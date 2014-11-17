@@ -24,6 +24,7 @@
 // THE SOFTWARE.
 
 #import "DTMemoryStorage+DTTableViewManagerAdditions.h"
+#import "ANTableViewControllerHeader.h"
 
 @protocol DTTableViewDataStorageUpdating <DTStorageUpdating>
 @optional
@@ -66,10 +67,7 @@
     
     if (!sourceIndexPath || !item)
     {
-        if ([self loggingEnabled])
-        {
-            NSLog(@"DTTableViewManager: source indexPath should not be nil when moving collection item");
-        }
+        ANLog(@"DTTableViewManager: source indexPath should not be nil when moving collection item");
         return;
     }
     DTSectionModel * sourceSection = [self getValidSection:sourceIndexPath.section];
@@ -77,10 +75,8 @@
     
     if ([destinationSection.objects count] < destinationIndexPath.row)
     {
-        if ([self loggingEnabled])
-        {
-            NSLog(@"DTTableViewManager: failed moving item to indexPath: %@, only %@ items in section", destinationIndexPath, @([destinationSection.objects count]));
-        }
+
+        ANLog(@"DTTableViewManager: failed moving item to indexPath: %@, only %@ items in section", destinationIndexPath, @([destinationSection.objects count]));
         self.currentUpdate = nil;
         return;
     }
