@@ -10,22 +10,22 @@
 
 @implementation DTSectionModel (SectionHeadersFooters)
 
--(id)tableHeaderModel
+- (id)tableHeaderModel
 {
     return [self supplementaryModelOfKind:DTTableViewElementSectionHeader];
 }
 
--(id)tableFooterModel
+- (id)tableFooterModel
 {
     return [self supplementaryModelOfKind:DTTableViewElementSectionFooter];
 }
 
--(void)setTableSectionHeader:(id)model
+- (void)setTableSectionHeader:(id)model
 {
     [self setSupplementaryModel:model forKind:DTTableViewElementSectionHeader];
 }
 
--(void)setTableSectionFooter:(id)model
+- (void)setTableSectionFooter:(id)model
 {
     [self setSupplementaryModel:model forKind:DTTableViewElementSectionFooter];
 }

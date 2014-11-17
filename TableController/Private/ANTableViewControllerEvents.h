@@ -24,12 +24,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-
 /**
  Protocol, that allows you to react to different DTTableViewController events. This protocol is adopted by DTTableViewController instance.
  */
-@protocol DTTableViewControllerEvents <NSObject>
+@protocol ANTableViewControllerEvents <NSObject>
 
 @optional
 

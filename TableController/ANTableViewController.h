@@ -1,48 +1,30 @@
 //
-//  DTTableViewController.h
-//  DTTableViewManager
+//  ANTableViewController.h
 //
-//  Created by Denys Telezhkin on 10/24/13.
-//  Copyright (c) 2013 MLSDev. All rights reserved.
+//  Created by Oksana Kovalchuk on 29/10/14.
+//  Copyright (c) 2014 ANODA. All rights reserved.
 //
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
 
 #import "DTModelTransfer.h"
-#import "DTMemoryStorage_DTTableViewManagerAdditions.h"
-#import "DTTableViewControllerEvents.h"
-#import "DTTableViewFactory.h"
+#import "DTMemoryStorage+DTTableViewManagerAdditions.h"
+#import "ANTableViewControllerEvents.h"
+#import "ANTableViewFactory.h"
 
-typedef NS_ENUM(NSUInteger,DTTableViewSectionStyle)
+typedef NS_ENUM(NSUInteger,ANTableViewSectionStyle)
 {
-    DTTableViewSectionStyleTitle = 1,
-    DTTableViewSectionStyleView
+    ANTableViewSectionStyleTitle = 1,
+    ANTableViewSectionStyleView
 };
 
 /**
  `DTTableViewController` manages all `UITableView` datasource methods and provides API for managing your data models in the table. 
 */
 
-@interface DTTableViewController : NSObject
+@interface ANTableViewController : NSObject
 <   UITableViewDataSource,
     UITableViewDelegate,
     UISearchBarDelegate,
-    DTTableViewControllerEvents
+    ANTableViewControllerEvents
 >
 
 - (instancetype)initWithTableView:(UITableView*)tableView;
@@ -52,7 +34,11 @@ typedef NS_ENUM(NSUInteger,DTTableViewSectionStyle)
 ///---------------------------------------
 
 @property (nonatomic, assign) BOOL isAnimating;
-@property (nonatomic, retain) DTTableViewFactory * cellFactory;
+@property (nonatomic, assign) BOOL isHandlingKeyboard; // default yes;
+
+@property (nonatomic, retain) ANTableViewFactory * cellFactory;
+
+@property (nonatomic, strong, readonly) id <DTStorageProtocol> currentStorage;
 
 /**
  Table view that will present your data models. Delegate and dataSource properties are set automatically.
@@ -80,17 +66,17 @@ typedef NS_ENUM(NSUInteger,DTTableViewSectionStyle)
 /*
  Property to store UISearchBar, attached to your UITableView. Attaching it to this property is completely optional. Delegate for UISearchBar is set to instance of DTTableViewController automatically.
  */
-@property (nonatomic, strong) IBOutlet UISearchBar * searchBar;
+@property (nonatomic, weak) UISearchBar* searchBar;
 
 /**
- Style of section headers for table view. Depending on style, datasource methods will return title for section or view for section. Default is DTTableViewSectionStyleTitle.
+ Style of section headers for table view. Depending on style, datasource methods will return title for section or view for section. Default is ANTableViewSectionStyleTitle.
  */
-@property (nonatomic, assign) DTTableViewSectionStyle sectionHeaderStyle;
+@property (nonatomic, assign) ANTableViewSectionStyle sectionHeaderStyle;
 
 /**
- Style of section footers for table view. Depending on style, datasource methods will return title for section or view for section. Default is DTTableViewSectionStyleTitle.
+ Style of section footers for table view. Depending on style, datasource methods will return title for section or view for section. Default is ANTableViewSectionStyleTitle.
  */
-@property (nonatomic, assign) DTTableViewSectionStyle sectionFooterStyle;
+@property (nonatomic, assign) ANTableViewSectionStyle sectionFooterStyle;
 
 /**
  Determines, whether header should be displayed, if section does not contain any items. Default value is YES.
@@ -152,7 +138,7 @@ typedef NS_ENUM(NSUInteger,DTTableViewSectionStyle)
 
 
 /**
- Register nib with `headerClass` name. `headerClass` should be a UIView subclass, conforming to `DTModelTransfer` protocol. It can also be a subclass of `UITableViewHeaderFooterView`. Calling this method automatically sets headerStyle property to DTTableViewSectionStyleView.
+ Register nib with `headerClass` name. `headerClass` should be a UIView subclass, conforming to `DTModelTransfer` protocol. It can also be a subclass of `UITableViewHeaderFooterView`. Calling this method automatically sets headerStyle property to ANTableViewSectionStyleView.
  
  @param headerClass headerClass to be mapped for `modelClass`
  
@@ -162,7 +148,7 @@ typedef NS_ENUM(NSUInteger,DTTableViewSectionStyle)
 -(void)registerHeaderClass:(Class)headerClass forModelClass:(Class)modelClass;
 
 /**
- Register nib with `footerClass` name. `footerClass` should be a UIView subclass, conforming to `DTModelTransfer` protocol. It can also be a subclass of `UITableViewHeaderFooterView`. Calling this method automatically sets footerStyle property to DTTableViewSectionStyleView.
+ Register nib with `footerClass` name. `footerClass` should be a UIView subclass, conforming to `DTModelTransfer` protocol. It can also be a subclass of `UITableViewHeaderFooterView`. Calling this method automatically sets footerStyle property to ANTableViewSectionStyleView.
  
  @param footerClass footerClass to be mapped for `modelClass`
  

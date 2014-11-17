@@ -7,7 +7,7 @@
 //
 
 #import "DTSectionModel.h"
-#import "DTMemoryStorage_DTTableViewManagerAdditions.h"
+#import "DTMemoryStorage+DTTableViewManagerAdditions.h"
 #import "DTMemoryStorage.h"
 
 /**

@@ -23,22 +23,23 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "DTMemoryStorage_DTTableViewManagerAdditions.h"
+#import "DTMemoryStorage+DTTableViewManagerAdditions.h"
+
+@protocol DTTableViewDataStorageUpdating <DTStorageUpdating>
+@optional
+
+- (void)performAnimatedUpdate:(void (^)(UITableView *))animationBlock;
+
+@end
 
 @interface DTMemoryStorage ()
-- (DTSectionModel *)getValidSection:(NSUInteger)sectionNumber;
 
 @property (nonatomic, retain) DTStorageUpdate * currentUpdate;
 
+- (DTSectionModel *)getValidSection:(NSUInteger)sectionNumber;
+
 - (void)startUpdate;
-
 - (void)finishUpdate;
-@end
-
-@protocol DTTableViewDataStorageUpdating <DTStorageUpdating>
-
-@optional
-- (void)performAnimatedUpdate:(void (^)(UITableView *))animationBlock;
 
 @end
 
@@ -46,14 +47,14 @@
 
 - (void)removeAllTableItems
 {
-    for (DTSectionModel * section in self.sections)
-    {
-        [section.objects removeAllObjects];
-    }
-    [(id <DTTableViewDataStorageUpdating>)self.delegate performAnimatedUpdate:^(UITableView * tableView)
-     {
-         [tableView reloadData];
-     }];
+    NSArray* objects = [self.sections valueForKey:@"objects"];
+    [objects makeObjectsPerformSelector:@selector(removeAllObjects)];
+
+    id<DTTableViewDataStorageUpdating> delegate = (id <DTTableViewDataStorageUpdating>)self.delegate;
+    
+    [delegate performAnimatedUpdate:^(UITableView * tableView) {
+        [tableView reloadData];
+    }];
 }
 
 - (void)moveTableItemAtIndexPath:(NSIndexPath *)sourceIndexPath
@@ -104,13 +105,14 @@
     DTSectionModel * validSectionFrom = [self getValidSection:indexFrom];
     [self getValidSection:indexTo];
     
-    [(NSMutableArray *)self.sections removeObject:validSectionFrom];
-    [(NSMutableArray *)self.sections insertObject:validSectionFrom atIndex:indexTo];
+    [self.sections removeObject:validSectionFrom];
+    [self.sections insertObject:validSectionFrom atIndex:indexTo];
     
-    [(id <DTTableViewDataStorageUpdating>)self.delegate performAnimatedUpdate:^(UITableView * tableView)
-     {
+    id<DTTableViewDataStorageUpdating> delegate = (id <DTTableViewDataStorageUpdating>)self.delegate;
+    
+    [delegate performAnimatedUpdate:^(UITableView * tableView) {
          [tableView moveSection:indexFrom toSection:indexTo];
-     }];
+    }];
 }
 
 @end
