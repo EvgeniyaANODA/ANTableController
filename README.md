@@ -1,2 +1,3 @@
-Adoption of DTTableViewController for using without UIViewcontroller sublassing 
+
 =================
+Adoption of DTTableViewController for using without UIViewcontroller sublassing 
