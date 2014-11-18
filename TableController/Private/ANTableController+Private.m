@@ -5,9 +5,9 @@
 //  Copyright (c) 2014 ANODA. All rights reserved.
 //
 
-#import "ANTableViewController+Private.h"
+#import "ANTableController+Private.h"
 
-@implementation ANTableViewController (Private)
+@implementation ANTableController (Private)
 
 #pragma mark - Storage
 
@@ -27,7 +27,6 @@
     return isHeader ? self.sectionHeaderStyle : self.sectionFooterStyle;
 }
 
-
 - (NSString *)_titleForSupplementaryIndex:(NSInteger)index type:(ANSupplementaryViewType)type
 {
     if (self.sectionHeaderStyle == ANTableViewSectionStyleTitle)
@@ -39,8 +38,6 @@
 
 - (void)_registerSupplementaryClass:(Class)viewClass forModelClass:(Class)modelClass type:(ANSupplementaryViewType)type
 {
-    NSParameterAssert(viewClass);
-    NSParameterAssert(modelClass);
     self.sectionFooterStyle = ANTableViewSectionStyleView;
     [self.cellFactory registerSupplementayClass:viewClass forModelClass:modelClass type:ANSupplementaryViewTypeFooter];
 }

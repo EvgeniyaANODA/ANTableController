@@ -24,7 +24,6 @@
 // THE SOFTWARE.
 
 #import "DTMemoryStorage+DTTableViewManagerAdditions.h"
-#import "ANTableViewControllerHeader.h"
 
 //TODO: don't like this shitty private protocol
 @protocol DTTableViewDataStorageUpdating <DTStorageUpdating>

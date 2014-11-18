@@ -7,6 +7,9 @@
 //
 
 
+//#ifndef ANTableViewControllerHeader_h
+//#define ANTableViewControllerHeader_h
+
 #ifdef AN_TABLE_LOG
 #    define ANLog(...) NSLog(__VA_ARGS__)
 #else
@@ -15,8 +18,7 @@
 #define ALog(...) NSLog(__VA_ARGS__)
 
 
-#ifndef ANTableViewControllerHeader_h
-#define ANTableViewControllerHeader_h
+typedef void (^ANCodeBlock)(void);
+typedef BOOL (^DTModelSearchingBlock)(id model, NSString * searchString, NSInteger searchScope, DTSectionModel * section);
 
-
-#endif
+//#endif

@@ -5,13 +5,30 @@
 //  Copyright (c) 2014 ANODA. All rights reserved.
 //
 
-#import "ANTableViewController.h"
+#import "ANTableController.h"
 #import "DTMemoryStorage+DTTableViewManagerAdditions.h"
 #import "ANStorageMovedIndexPath.h"
 #import "ANKeyboardHandler.h"
-#import "ANTableViewController+Private.h"
+#import "ANTableController+Private.h"
+#import "ANTableController+UITableViewDelegatesPrivate.h"
 
-@interface ANTableViewController () <DTStorageUpdating, ANTableViewFactoryDelegate>
+//TODO: move to helpers class
+void ANDispatchBlockToMainQueue(ANCodeBlock block)
+{
+    if ([NSThread isMainThread]) {
+        if (block) block();
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (block) block();
+        });
+    }
+}
+
+@interface ANTableController ()
+<
+    DTStorageUpdating,
+    ANTableViewFactoryDelegate
+>
 
 @property (nonatomic, assign) NSInteger currentSearchScope;
 @property (nonatomic, copy) NSString * currentSearchString;
@@ -19,7 +36,7 @@
 
 @end
 
-@implementation ANTableViewController
+@implementation ANTableController
 
 @synthesize storage = _storage;
 
@@ -117,7 +134,7 @@
     {
         _storage = [DTMemoryStorage storage];
         [self _attachStorage:_storage];
-//        [self storageNeedsReload]; // handling one-section table setup
+        [self storageNeedsReload]; // handling one-section table setup
     }
     return _storage;
 }
@@ -126,7 +143,7 @@
 {
     _storage = storage;
     [self _attachStorage:_storage];
-//    [self storageNeedsReload];
+    [self storageNeedsReload];
 }
 
 - (void)setSearchingStorage:(id <DTStorageProtocol>)searchingStorage
@@ -206,7 +223,7 @@
     }
     self.isAnimating = YES;
     
-    CDDispatchBlockToMainQueue(^{
+    ANDispatchBlockToMainQueue(^{
        
             [CATransaction begin];
             [CATransaction setCompletionBlock:^{
@@ -249,12 +266,12 @@
 
 - (void)storageNeedsReload
 {
-//    CDDispatchBlockToMainQueue(^{
+    ANDispatchBlockToMainQueue(^{
     
         [self tableControllerWillUpdateContent];
         [self.tableView reloadData];
         [self tableControllerDidUpdateContent];
-//    });
+    });
 }
 
 - (void)performAnimatedUpdate:(void (^)(UITableView *))animationBlock
@@ -306,7 +323,6 @@ moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
     }
 }
 
-
 #pragma mark - UITableView Protocols Implementation
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -320,41 +336,10 @@ moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
     return [sectionModel numberOfObjects];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)sectionNumber
-{
-    return [self _titleForSupplementaryIndex:sectionNumber type:ANSupplementaryViewTypeHeader];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)sectionNumber
-{
-    return [self _titleForSupplementaryIndex:sectionNumber type:ANSupplementaryViewTypeFooter];
-}
-
-- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)sectionNumber
-{
-    return [self _supplementaryViewForIndex:sectionNumber type:ANSupplementaryViewTypeHeader];
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)sectionNumber
-{
-    return [self _supplementaryViewForIndex:sectionNumber type:ANSupplementaryViewTypeFooter];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)sectionNumber
-{
-    return [self _heightForSupplementaryIndex:sectionNumber type:ANSupplementaryViewTypeHeader];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)sectionNumber
-{
-    return [self _heightForSupplementaryIndex:sectionNumber type:ANSupplementaryViewTypeFooter];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id model = [self.currentStorage objectAtIndexPath:indexPath];;
     return [self.cellFactory cellForModel:model atIndexPath:indexPath];
 }
-
 
 @end

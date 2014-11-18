@@ -5,9 +5,9 @@
 //  Copyright (c) 2014 ANODA. All rights reserved.
 //
 
-#import "ANTableViewController.h"
+#import "ANTableController.h"
 
-@interface ANTableViewController (Private)
+@interface ANTableController (Private)
 
 - (ANTableViewSectionStyle)_sectionStyleByType:(ANSupplementaryViewType)type;
 

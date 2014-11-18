@@ -12,9 +12,9 @@
 
 @interface ANTableViewFactory ()
 
-@property (nonatomic,strong) NSMutableDictionary * cellMappingsDictionary;
-@property (nonatomic,strong) NSMutableDictionary * headerMappingsDictionary;
-@property (nonatomic,strong) NSMutableDictionary * footerMappingsDictionary;
+@property (nonatomic,strong) NSMutableDictionary* cellMappingsDictionary;
+@property (nonatomic,strong) NSMutableDictionary* headerMappingsDictionary;
+@property (nonatomic,strong) NSMutableDictionary* footerMappingsDictionary;
 
 @end
 
