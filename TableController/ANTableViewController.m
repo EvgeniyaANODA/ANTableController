@@ -117,7 +117,7 @@
     {
         _storage = [DTMemoryStorage storage];
         [self _attachStorage:_storage];
-        [self storageNeedsReload]; // handling one-section table setup
+//        [self storageNeedsReload]; // handling one-section table setup
     }
     return _storage;
 }
@@ -126,6 +126,7 @@
 {
     _storage = storage;
     [self _attachStorage:_storage];
+//    [self storageNeedsReload];
 }
 
 - (void)setSearchingStorage:(id <DTStorageProtocol>)searchingStorage
@@ -248,12 +249,12 @@
 
 - (void)storageNeedsReload
 {
-    CDDispatchBlockToMainQueue(^{
-        
+//    CDDispatchBlockToMainQueue(^{
+    
         [self tableControllerWillUpdateContent];
         [self.tableView reloadData];
         [self tableControllerDidUpdateContent];
-    });
+//    });
 }
 
 - (void)performAnimatedUpdate:(void (^)(UITableView *))animationBlock

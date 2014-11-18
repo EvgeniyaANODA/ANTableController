@@ -7,7 +7,7 @@
 
 @protocol ANTableViewFactoryDelegate
 
--(UITableView *)tableView;
+- (UITableView *)tableView;
 
 @end
 
@@ -20,14 +20,13 @@ typedef NS_ENUM(NSInteger, ANSupplementaryViewType)
 
 @interface ANTableViewFactory : NSObject
 
--(void)registerCellClass:(Class)cellClass forModelClass:(Class)modelClass;
+- (void)registerCellClass:(Class)cellClass forModelClass:(Class)modelClass;
 
 - (void)registerSupplementayClass:(Class)supplementaryClass
                     forModelClass:(Class)modelClass
                              type:(ANSupplementaryViewType)type;
 
-- (UITableViewCell *)cellForModel:(NSObject *)model atIndexPath:(NSIndexPath *)indexPath;
-
+- (UITableViewCell *)cellForModel:(id)model atIndexPath:(NSIndexPath *)indexPath;
 - (UIView *)supplementaryViewForModel:(id)model type:(ANSupplementaryViewType)type;
 
 @property (nonatomic, weak) id <ANTableViewFactoryDelegate> delegate;

@@ -26,6 +26,7 @@
 #import "DTMemoryStorage+DTTableViewManagerAdditions.h"
 #import "ANTableViewControllerHeader.h"
 
+//TODO: don't like this shitty private protocol
 @protocol DTTableViewDataStorageUpdating <DTStorageUpdating>
 @optional
 
@@ -37,7 +38,7 @@
 
 @property (nonatomic, retain) DTStorageUpdate * currentUpdate;
 
-- (DTSectionModel *)getValidSection:(NSUInteger)sectionNumber;
+- (DTSectionModel *)createSectionIfNotExist:(NSUInteger)sectionNumber;
 
 - (void)startUpdate;
 - (void)finishUpdate;
@@ -58,8 +59,7 @@
     }];
 }
 
-- (void)moveTableItemAtIndexPath:(NSIndexPath *)sourceIndexPath
-                toIndexPath:(NSIndexPath *)destinationIndexPath
+- (void)moveTableItemAtIndexPath:(NSIndexPath *)sourceIndexPath  toIndexPath:(NSIndexPath *)destinationIndexPath
 {
     [self startUpdate];
     
@@ -70,8 +70,8 @@
         ANLog(@"DTTableViewManager: source indexPath should not be nil when moving collection item");
         return;
     }
-    DTSectionModel * sourceSection = [self getValidSection:sourceIndexPath.section];
-    DTSectionModel * destinationSection = [self getValidSection:destinationIndexPath.section];
+    DTSectionModel * sourceSection = [self createSectionIfNotExist:sourceIndexPath.section];
+    DTSectionModel * destinationSection = [self createSectionIfNotExist:destinationIndexPath.section];
     
     if ([destinationSection.objects count] < destinationIndexPath.row)
     {
@@ -98,8 +98,8 @@
 
 - (void)moveTableViewSection:(NSInteger)indexFrom toSection:(NSInteger)indexTo
 {
-    DTSectionModel * validSectionFrom = [self getValidSection:indexFrom];
-    [self getValidSection:indexTo];
+    DTSectionModel * validSectionFrom = [self createSectionIfNotExist:indexFrom];
+    [self createSectionIfNotExist:indexTo];
     
     [self.sections removeObject:validSectionFrom];
     [self.sections insertObject:validSectionFrom atIndex:indexTo];

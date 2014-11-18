@@ -15,32 +15,10 @@
  */
 @interface DTSectionModel (SectionHeadersFooters)
 
-/**
- Retrieve table header model for current section. 
- 
- @return header model
- */
--(id)tableHeaderModel;
+- (id)tableHeaderModel;
+- (id)tableFooterModel;
 
-/**
- Retrieve table header model for current section.
- 
- @return footer model
- */
--(id)tableFooterModel;
-
-/**
- Header model for current section.
- 
- @param headerModel footer model for current section
- */
--(void)setTableSectionHeader:(id)headerModel;
-
-/**
- Footer model for current section.
- 
- @param footerModel footer model for current section
- */
--(void)setTableSectionFooter:(id)footerModel;
+- (void)setTableSectionHeader:(id)headerModel;
+- (void)setTableSectionFooter:(id)footerModel;
 
 @end
