@@ -17,11 +17,12 @@
 
 + (instancetype)handlerWithTarget:(id)target
 {
-    NSAssert([target isKindOfClass:[UIScrollView class]], @"You can't handle keyboard on class %@\n It must me UIScrollView subclass", NSStringFromClass([target class]));
+    NSAssert([target isKindOfClass:[UIScrollView class]],
+    @"You can't handle keyboard on class %@\n It must me UIScrollView subclass", NSStringFromClass([target class]));
     
     ANKeyboardHandler* instance = [ANKeyboardHandler new];
     instance.target = target;
-    
+    [instance setupKeyboard];
     return instance;
 }
 
@@ -57,15 +58,15 @@
     CGFloat duration = [info[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     kbHeight = isVisible ? kbHeight : -kbHeight;
     
-    [UIView animateWithDuration:duration animations:^{
-        
+    [UIView animateWithDuration:duration animations:CDMainQueueBlockFromCompletion(^{
+       
         UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.target.contentInset.top,
                                                       0.0,
                                                       self.target.contentInset.bottom + kbHeight,
                                                       0.0);
         self.target.contentInset = contentInsets;
         self.target.scrollIndicatorInsets = contentInsets;
-    }];
+    })];
 }
 
 - (void)hideKeyboard
