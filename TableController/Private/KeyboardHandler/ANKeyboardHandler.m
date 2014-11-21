@@ -58,7 +58,7 @@
     CGFloat duration = [info[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     kbHeight = isVisible ? kbHeight : -kbHeight;
     
-    [UIView animateWithDuration:duration animations:CDMainQueueBlockFromCompletion(^{
+    [UIView animateWithDuration:duration animations:SMMainQueueBlockFromCompletion(^{
        
         UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.target.contentInset.top,
                                                       0.0,
