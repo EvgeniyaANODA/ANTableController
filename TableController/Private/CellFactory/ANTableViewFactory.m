@@ -104,7 +104,7 @@
 {
     NSString* modelClassName = [DTRuntimeHelper modelStringForClass:[model class]];
     NSString* cellClassString = [self.cellMappingsDictionary objectForKey:modelClassName];
-    NSAssert(cellClassString, @"DTCellFactory does not have cell mapping for model class: %@",[model class]);
+    NSAssert(cellClassString, @"%@ does not have cell mapping for model class: %@",[self class], [model class]);
     
     return cellClassString;
 }

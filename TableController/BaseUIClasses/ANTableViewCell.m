@@ -30,6 +30,8 @@
 {
     if (isTransparent)
     {
+        self.contentView.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor clearColor];
         self.backgroundView = [UIView new];
     }
     _isTransparent = isTransparent;
