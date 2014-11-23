@@ -22,7 +22,7 @@
 
 - (ANTableViewSectionStyle)_sectionStyleByType:(ANSupplementaryViewType)type
 {
-    NSParameterAssert(type == ANSupplementaryViewTypeNone);
+    NSParameterAssert(type != ANSupplementaryViewTypeNone);
     BOOL isHeader = (type == ANSupplementaryViewTypeHeader);
     return isHeader ? self.sectionHeaderStyle : self.sectionFooterStyle;
 }
@@ -31,21 +31,28 @@
 {
     if (self.sectionHeaderStyle == ANTableViewSectionStyleTitle)
     {
-        return [self _supplementaryModelForIndex:index type:ANSupplementaryViewTypeFooter];
+        return [self _supplementaryModelForIndex:index type:type];
     }
     return nil;
 }
 
 - (void)_registerSupplementaryClass:(Class)viewClass forModelClass:(Class)modelClass type:(ANSupplementaryViewType)type
 {
-    self.sectionFooterStyle = ANTableViewSectionStyleView;
-    [self.cellFactory registerSupplementayClass:viewClass forModelClass:modelClass type:ANSupplementaryViewTypeFooter];
+    if (type == ANSupplementaryViewTypeHeader)
+    {
+        self.sectionHeaderStyle = ANTableViewSectionStyleView;
+    }
+    else
+    {
+        self.sectionFooterStyle = ANTableViewSectionStyleView;
+    }
+    [self.cellFactory registerSupplementayClass:viewClass forModelClass:modelClass type:type];
 }
 
 - (UIView*)_supplementaryViewForIndex:(NSInteger)index type:(ANSupplementaryViewType)type
 {
-    id model = [self _supplementaryModelForIndex:index type:ANSupplementaryViewTypeHeader];
-    BOOL isViewStyle = (self.sectionHeaderStyle == ANTableViewSectionStyleView);
+    id model = [self _supplementaryModelForIndex:index type:type];
+    BOOL isViewStyle = ([self _sectionStyleByType:type] == ANTableViewSectionStyleView);
     if (isViewStyle && model)
     {
         return [self.cellFactory supplementaryViewForModel:model type:type];
@@ -58,13 +65,13 @@
 {
     if ([self.currentStorage.sections[index] numberOfObjects] || self.displayHeaderOnEmptySection)
     {
-        if ([self.searchingStorage respondsToSelector:@selector(headerModelForSectionIndex:)])
+        if ([self.currentStorage respondsToSelector:@selector(headerModelForSectionIndex:)])
         {
-            if (ANSupplementaryViewTypeHeader)
+            if (type == ANSupplementaryViewTypeHeader)
             {
                 return [self.currentStorage headerModelForSectionIndex:index];
             }
-            else if (ANSupplementaryViewTypeFooter)
+            else if (type == ANSupplementaryViewTypeFooter)
             {
                 return [self.currentStorage footerModelForSectionIndex:index];
             }
