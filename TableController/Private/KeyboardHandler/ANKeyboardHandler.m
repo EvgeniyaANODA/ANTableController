@@ -6,6 +6,7 @@
 //
 
 #import "ANKeyboardHandler.h"
+#import "ANHelperFunctions.h"
 
 @interface ANKeyboardHandler ()
 
@@ -58,7 +59,7 @@
     CGFloat duration = [info[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     kbHeight = isVisible ? kbHeight : -kbHeight;
     
-    [UIView animateWithDuration:duration animations:SMMainQueueBlockFromCompletion(^{
+    [UIView animateWithDuration:duration animations:ANMainQueueBlockFromCompletion(^{
        
         UIEdgeInsets contentInsets = UIEdgeInsetsMake(self.target.contentInset.top,
                                                       0.0,

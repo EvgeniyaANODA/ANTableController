@@ -11,18 +11,7 @@
 #import "ANKeyboardHandler.h"
 #import "ANTableController+Private.h"
 #import "ANTableController+UITableViewDelegatesPrivate.h"
-
-//TODO: move to helpers class
-void ANDispatchBlockToMainQueue(ANCodeBlock block)
-{
-    if ([NSThread isMainThread]) {
-        if (block) block();
-    } else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (block) block();
-        });
-    }
-}
+#import "ANHelperFunctions.h"
 
 @interface ANTableController ()
 <
