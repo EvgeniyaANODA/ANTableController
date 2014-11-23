@@ -331,4 +331,9 @@ moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
     return [self.cellFactory cellForModel:model atIndexPath:indexPath];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 @end
