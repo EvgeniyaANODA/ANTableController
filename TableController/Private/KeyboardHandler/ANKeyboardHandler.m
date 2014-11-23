@@ -11,6 +11,7 @@
 @interface ANKeyboardHandler ()
 
 @property (nonatomic, weak) UIScrollView* target;
+@property (nonatomic, strong) UITapGestureRecognizer* tapRecognizer;
 
 @end
 
@@ -29,17 +30,23 @@
 
 - (void)setupKeyboard
 {
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    [self.target addGestureRecognizer:tapRecognizer];
-    tapRecognizer.cancelsTouchesInView = NO;
+    self.tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    [self.target addGestureRecognizer:self.tapRecognizer];
+    self.tapRecognizer.cancelsTouchesInView = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (void)prepareForDie
+{
+    [self.target removeGestureRecognizer:self.tapRecognizer];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self prepareForDie];
 }
 
 - (void)keyboardWillShow:(NSNotification*)aNotification
