@@ -37,7 +37,6 @@
         self.tableView = tableView;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-        self.searchBar.delegate = self; //TODO:
         self.isHandlingKeyboard = YES;
         
         [self setupTableViewControllerDefaults];
@@ -146,12 +145,18 @@
     return [self isSearching] ? self.searchingStorage : self.storage;
 }
 
+- (void)setSearchBar:(UISearchBar *)searchBar
+{
+    _searchBar = searchBar;
+    _searchBar.delegate = self;
+}
+
 #pragma mark - search
 
 - (BOOL)isSearching
 {
-    BOOL isSearchStringEmpty = (self.currentSearchString && (self.currentSearchString.length != 0));
-    BOOL isSearching = (isSearchStringEmpty ||self.currentSearchScope > -1);
+    BOOL isSearchStringNonEmpty = (self.currentSearchString && self.currentSearchString.length);
+    BOOL isSearching = (isSearchStringNonEmpty || self.currentSearchScope > -1);
 
     return isSearching;
 }
@@ -165,8 +170,8 @@
 {
     BOOL isSearching = [self isSearching];
 
-    BOOL isNothingChanged = ([searchString isEqualToString:self.currentSearchString]) ||
-                          (scopeNumber == self.currentSearchScope); //TODO: this seems uncorrect not a || but &&
+    BOOL isNothingChanged = ([searchString isEqualToString:self.currentSearchString]) &&
+                            (scopeNumber == self.currentSearchScope);
     
     if (!isNothingChanged)
     {
@@ -261,6 +266,19 @@
         [self.tableView reloadData];
         [self tableControllerDidUpdateContent];
     });
+}
+
+- (void)storageNeedsReloadAnimated
+{
+    [self storageNeedsReload];
+    
+    CATransition *animation = [CATransition animation];
+    [animation setType:kCATransitionFromBottom];
+    [animation setSubtype:kCATransitionFromBottom];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [animation setFillMode:kCAFillModeBoth];
+    [animation setDuration:kAnimationDuration];
+    [self.tableView.layer addAnimation:animation forKey:@"UITableViewReloadDataAnimationKey"];
 }
 
 - (void)performAnimatedUpdate:(void (^)(UITableView *))animationBlock

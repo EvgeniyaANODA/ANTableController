@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger,ANTableViewSectionStyle)
 @property (nonatomic, strong, readonly) id <DTStorageProtocol> currentStorage;
 
 @property (nonatomic, weak) UITableView * tableView;
-@property (nonatomic, weak) UISearchBar* searchBar;
+@property (nonatomic, strong) UISearchBar* searchBar;
 
 #pragma mark - Storages
 
