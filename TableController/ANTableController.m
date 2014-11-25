@@ -13,6 +13,8 @@
 #import "ANTableController+UITableViewDelegatesPrivate.h"
 #import "ANHelperFunctions.h"
 
+static const CGFloat kTableAnimationDuration = 0.25f;
+
 @interface ANTableController ()
 <
     DTStorageUpdating,
@@ -277,7 +279,7 @@
     [animation setSubtype:kCATransitionFromBottom];
     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     [animation setFillMode:kCAFillModeBoth];
-    [animation setDuration:kAnimationDuration];
+    [animation setDuration:kTableAnimationDuration];
     [self.tableView.layer addAnimation:animation forKey:@"UITableViewReloadDataAnimationKey"];
 }
 
@@ -291,9 +293,19 @@
 - (void)tableControllerWillUpdateContent {}
 - (void)tableControllerDidUpdateContent {}
 //search
-- (void)tableControllerWillBeginSearch {}
-- (void)tableControllerDidEndSearch {}
-- (void)tableControllerDidCancelSearch {}
+- (void)tableControllerWillBeginSearch
+{
+    self.storage.delegate = nil;
+}
+- (void)tableControllerDidEndSearch
+{
+    self.searchingStorage.delegate = self;
+}
+- (void)tableControllerDidCancelSearch
+{
+    self.searchingStorage.delegate = nil;
+    self.storage.delegate = self;
+}
 
 #pragma mark - UITableView Class Registrations
 
