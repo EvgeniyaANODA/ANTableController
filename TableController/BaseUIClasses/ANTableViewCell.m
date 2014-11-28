@@ -37,4 +37,12 @@
     _isTransparent = isTransparent;
 }
 
+- (void)setSelectionColor:(UIColor *)selectionColor
+{
+    _selectionColor = selectionColor;
+    UIView* selection = [UIView new];
+    selection.backgroundColor = selectionColor;
+    self.selectedBackgroundView = selection;
+}
+
 @end

@@ -10,5 +10,6 @@
 @interface ANTableViewCell : UITableViewCell <DTModelTransfer>
 
 @property (nonatomic, assign) BOOL isTransparent;
+@property (nonatomic, strong) UIColor* selectionColor;
 
 @end
