@@ -351,8 +351,13 @@ moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    id <DTSection> sectionModel = [self.currentStorage sections][section];
-    return [sectionModel numberOfObjects];
+    NSArray* sections = [self.currentStorage sections];
+    if (sections && sections.count > section)
+    {
+        id <DTSection> sectionModel = sections[section];
+        return [sectionModel numberOfObjects];
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
