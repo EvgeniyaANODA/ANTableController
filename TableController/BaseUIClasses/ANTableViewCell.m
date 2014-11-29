@@ -43,6 +43,7 @@
     UIView* selection = [UIView new];
     selection.backgroundColor = selectionColor;
     self.selectedBackgroundView = selection;
+    self.selectionStyle = UITableViewCellSelectionStyleDefault;
 }
 
 @end
