@@ -9,4 +9,6 @@
 
 + (instancetype)handlerWithTarget:(id)target;
 
+- (void)prepareForDie;
+
 @end
