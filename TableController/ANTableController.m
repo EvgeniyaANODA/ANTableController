@@ -170,9 +170,9 @@ static const CGFloat kTableAnimationDuration = 0.25f;
 - (void)filterTableItemsForSearchString:(NSString *)searchString inScope:(NSInteger)scopeNumber
 {
     BOOL isSearching = [self isSearching];
-
+    
     BOOL isNothingChanged = ([searchString isEqualToString:self.currentSearchString]) &&
-                            (scopeNumber == self.currentSearchScope);
+    (scopeNumber == self.currentSearchScope);
     
     if (!isNothingChanged)
     {
@@ -181,7 +181,7 @@ static const CGFloat kTableAnimationDuration = 0.25f;
         
         if (isSearching && ![self isSearching])
         {
-            [self storageNeedsReload];
+            [self storageNeedsReloadAnimated];
             [self tableControllerDidCancelSearch];
         }
         else if ([self.storage respondsToSelector:@selector(searchingStorageForSearchString:inSearchScope:)])
@@ -189,7 +189,7 @@ static const CGFloat kTableAnimationDuration = 0.25f;
             [self tableControllerWillBeginSearch];
             self.searchingStorage = [self.storage searchingStorageForSearchString:searchString
                                                                     inSearchScope:scopeNumber];
-            [self storageNeedsReload];
+            [self storageNeedsReloadAnimated];
             [self tableControllerDidEndSearch];
         }
     }
