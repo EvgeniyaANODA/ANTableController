@@ -28,9 +28,7 @@
 		07FBC17D1A317BD100AC2743 /* DTSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FBC1711A317BD100AC2743 /* DTSectionModel.m */; };
 		07FBC17E1A317BD100AC2743 /* DTMemoryStorage+UpdateWithoutAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FBC1741A317BD100AC2743 /* DTMemoryStorage+UpdateWithoutAnimations.m */; };
 		07FBC17F1A317BD100AC2743 /* DTRuntimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FBC1771A317BD100AC2743 /* DTRuntimeHelper.m */; };
-		07FBC18A1A317DCB00AC2743 /* ANHelperFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FBC1871A317DCB00AC2743 /* ANHelperFunctions.m */; };
 		07FBC18F1A318B9C00AC2743 /* DTMemoryStorage+ANTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FBC18E1A318B9C00AC2743 /* DTMemoryStorage+ANTableViewController.m */; };
-		07FBC1931A318BC100AC2743 /* ANKeyboardHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FBC1921A318BC100AC2743 /* ANKeyboardHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,13 +80,8 @@
 		07FBC1761A317BD100AC2743 /* DTRuntimeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTRuntimeHelper.h; sourceTree = "<group>"; };
 		07FBC1771A317BD100AC2743 /* DTRuntimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTRuntimeHelper.m; sourceTree = "<group>"; };
 		07FBC1821A317CBD00AC2743 /* Demo.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo.pch; sourceTree = "<group>"; };
-		07FBC1851A317DCB00AC2743 /* ANDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANDefines.h; sourceTree = "<group>"; };
-		07FBC1861A317DCB00AC2743 /* ANHelperFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANHelperFunctions.h; sourceTree = "<group>"; };
-		07FBC1871A317DCB00AC2743 /* ANHelperFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANHelperFunctions.m; sourceTree = "<group>"; };
 		07FBC18D1A318B9C00AC2743 /* DTMemoryStorage+ANTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTMemoryStorage+ANTableViewController.h"; sourceTree = "<group>"; };
 		07FBC18E1A318B9C00AC2743 /* DTMemoryStorage+ANTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DTMemoryStorage+ANTableViewController.m"; sourceTree = "<group>"; };
-		07FBC1911A318BC100AC2743 /* ANKeyboardHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANKeyboardHandler.h; sourceTree = "<group>"; };
-		07FBC1921A318BC100AC2743 /* ANKeyboardHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANKeyboardHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +114,6 @@
 		07FBC1131A31745900AC2743 /* ANTableControllerDemo */ = {
 			isa = PBXGroup;
 			children = (
-				07FBC1901A318BC100AC2743 /* KeyboardHandler */,
-				07FBC1831A317DCB00AC2743 /* ANHelperFunctions */,
 				07FBC1801A317BDC00AC2743 /* Storage */,
 				07FBC13A1A3178ED00AC2743 /* TableController */,
 				07FBC1941A318F0600AC2743 /* AppDelegate */,
@@ -252,16 +243,6 @@
 			name = Storage;
 			sourceTree = "<group>";
 		};
-		07FBC1831A317DCB00AC2743 /* ANHelperFunctions */ = {
-			isa = PBXGroup;
-			children = (
-				07FBC1851A317DCB00AC2743 /* ANDefines.h */,
-				07FBC1861A317DCB00AC2743 /* ANHelperFunctions.h */,
-				07FBC1871A317DCB00AC2743 /* ANHelperFunctions.m */,
-			);
-			path = ANHelperFunctions;
-			sourceTree = "<group>";
-		};
 		07FBC18C1A318B9C00AC2743 /* DTMemoryStorage */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,15 +250,6 @@
 				07FBC18E1A318B9C00AC2743 /* DTMemoryStorage+ANTableViewController.m */,
 			);
 			path = DTMemoryStorage;
-			sourceTree = "<group>";
-		};
-		07FBC1901A318BC100AC2743 /* KeyboardHandler */ = {
-			isa = PBXGroup;
-			children = (
-				07FBC1911A318BC100AC2743 /* ANKeyboardHandler.h */,
-				07FBC1921A318BC100AC2743 /* ANKeyboardHandler.m */,
-			);
-			path = KeyboardHandler;
 			sourceTree = "<group>";
 		};
 		07FBC1941A318F0600AC2743 /* AppDelegate */ = {
@@ -373,7 +345,6 @@
 				07FBC17C1A317BD100AC2743 /* DTMemoryStorage.m in Sources */,
 				07FBC17F1A317BD100AC2743 /* DTRuntimeHelper.m in Sources */,
 				07FBC1781A317BD100AC2743 /* ANStorageMovedIndexPath.m in Sources */,
-				07FBC18A1A317DCB00AC2743 /* ANHelperFunctions.m in Sources */,
 				07FBC1541A3178EE00AC2743 /* ANTableViewCell.m in Sources */,
 				07FBC1561A3178EE00AC2743 /* ANTableController+Private.m in Sources */,
 				07FBC17D1A317BD100AC2743 /* DTSectionModel.m in Sources */,
@@ -387,7 +358,6 @@
 				07FBC1581A3178EE00AC2743 /* ANTableViewFactory.m in Sources */,
 				07FBC1551A3178EE00AC2743 /* ANTableViewHeaderFooterView.m in Sources */,
 				07FBC17B1A317BD100AC2743 /* DTCoreDataStorage.m in Sources */,
-				07FBC1931A318BC100AC2743 /* ANKeyboardHandler.m in Sources */,
 				07FBC17A1A317BD100AC2743 /* DTStorageUpdate.m in Sources */,
 				07FBC18F1A318B9C00AC2743 /* DTMemoryStorage+ANTableViewController.m in Sources */,
 			);
@@ -536,6 +506,7 @@
 				07FBC1361A31745A00AC2743 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
