@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07114F551A34418400A8B2EF /* ANTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F3E1A34418400A8B2EF /* ANTableController.m */; };
-		07114F561A34418400A8B2EF /* ANTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F421A34418400A8B2EF /* ANTableViewCell.m */; };
-		07114F571A34418400A8B2EF /* ANTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F441A34418400A8B2EF /* ANTableViewHeaderFooterView.m */; };
-		07114F581A34418400A8B2EF /* ANTableController+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F471A34418400A8B2EF /* ANTableController+Private.m */; };
-		07114F591A34418400A8B2EF /* ANTableController+UITableViewDelegatesPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F491A34418400A8B2EF /* ANTableController+UITableViewDelegatesPrivate.m */; };
-		07114F5A1A34418400A8B2EF /* ANTableViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F4D1A34418400A8B2EF /* ANTableViewFactory.m */; };
-		07114F5B1A34418400A8B2EF /* DTMemoryStorage+ANTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F4F1A34418400A8B2EF /* DTMemoryStorage+ANTableController.m */; };
+		07114F731A34480F00A8B2EF /* ANTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F601A34480F00A8B2EF /* ANTableController.m */; };
+		07114F741A34480F00A8B2EF /* ANTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F641A34480F00A8B2EF /* ANTableViewCell.m */; };
+		07114F751A34480F00A8B2EF /* ANTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F661A34480F00A8B2EF /* ANTableViewHeaderFooterView.m */; };
+		07114F761A34480F00A8B2EF /* ANTableController+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F691A34480F00A8B2EF /* ANTableController+Private.m */; };
+		07114F771A34480F00A8B2EF /* ANTableController+UITableViewDelegatesPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F6B1A34480F00A8B2EF /* ANTableController+UITableViewDelegatesPrivate.m */; };
+		07114F781A34480F00A8B2EF /* ANTableViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F6F1A34480F00A8B2EF /* ANTableViewFactory.m */; };
+		07114F791A34480F00A8B2EF /* DTMemoryStorage+ANTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07114F721A34480F00A8B2EF /* DTMemoryStorage+ANTableViewController.m */; };
 		07FBC1171A31745900AC2743 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FBC1161A31745900AC2743 /* main.m */; };
 		07FBC11A1A31745A00AC2743 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FBC1191A31745A00AC2743 /* AppDelegate.m */; };
 		07FBC11D1A31745A00AC2743 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FBC11C1A31745A00AC2743 /* ViewController.m */; };
@@ -25,22 +25,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		07114F3D1A34418400A8B2EF /* ANTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANTableController.h; sourceTree = "<group>"; };
-		07114F3E1A34418400A8B2EF /* ANTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANTableController.m; sourceTree = "<group>"; };
-		07114F3F1A34418400A8B2EF /* ANTableControllerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANTableControllerHeader.h; sourceTree = "<group>"; };
-		07114F411A34418400A8B2EF /* ANTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANTableViewCell.h; sourceTree = "<group>"; };
-		07114F421A34418400A8B2EF /* ANTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANTableViewCell.m; sourceTree = "<group>"; };
-		07114F431A34418400A8B2EF /* ANTableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANTableViewHeaderFooterView.h; sourceTree = "<group>"; };
-		07114F441A34418400A8B2EF /* ANTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANTableViewHeaderFooterView.m; sourceTree = "<group>"; };
-		07114F461A34418400A8B2EF /* ANTableController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ANTableController+Private.h"; sourceTree = "<group>"; };
-		07114F471A34418400A8B2EF /* ANTableController+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ANTableController+Private.m"; sourceTree = "<group>"; };
-		07114F481A34418400A8B2EF /* ANTableController+UITableViewDelegatesPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ANTableController+UITableViewDelegatesPrivate.h"; sourceTree = "<group>"; };
-		07114F491A34418400A8B2EF /* ANTableController+UITableViewDelegatesPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ANTableController+UITableViewDelegatesPrivate.m"; sourceTree = "<group>"; };
-		07114F4A1A34418400A8B2EF /* ANTableControllerEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANTableControllerEvents.h; sourceTree = "<group>"; };
-		07114F4C1A34418400A8B2EF /* ANTableViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANTableViewFactory.h; sourceTree = "<group>"; };
-		07114F4D1A34418400A8B2EF /* ANTableViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANTableViewFactory.m; sourceTree = "<group>"; };
-		07114F4E1A34418400A8B2EF /* DTMemoryStorage+ANTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTMemoryStorage+ANTableController.h"; sourceTree = "<group>"; };
-		07114F4F1A34418400A8B2EF /* DTMemoryStorage+ANTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DTMemoryStorage+ANTableController.m"; sourceTree = "<group>"; };
+		07114F5F1A34480F00A8B2EF /* ANTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANTableController.h; sourceTree = "<group>"; };
+		07114F601A34480F00A8B2EF /* ANTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANTableController.m; sourceTree = "<group>"; };
+		07114F611A34480F00A8B2EF /* ANTableControllerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANTableControllerHeader.h; sourceTree = "<group>"; };
+		07114F631A34480F00A8B2EF /* ANTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANTableViewCell.h; sourceTree = "<group>"; };
+		07114F641A34480F00A8B2EF /* ANTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANTableViewCell.m; sourceTree = "<group>"; };
+		07114F651A34480F00A8B2EF /* ANTableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANTableViewHeaderFooterView.h; sourceTree = "<group>"; };
+		07114F661A34480F00A8B2EF /* ANTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANTableViewHeaderFooterView.m; sourceTree = "<group>"; };
+		07114F681A34480F00A8B2EF /* ANTableController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ANTableController+Private.h"; sourceTree = "<group>"; };
+		07114F691A34480F00A8B2EF /* ANTableController+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ANTableController+Private.m"; sourceTree = "<group>"; };
+		07114F6A1A34480F00A8B2EF /* ANTableController+UITableViewDelegatesPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ANTableController+UITableViewDelegatesPrivate.h"; sourceTree = "<group>"; };
+		07114F6B1A34480F00A8B2EF /* ANTableController+UITableViewDelegatesPrivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ANTableController+UITableViewDelegatesPrivate.m"; sourceTree = "<group>"; };
+		07114F6C1A34480F00A8B2EF /* ANTableControllerEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANTableControllerEvents.h; sourceTree = "<group>"; };
+		07114F6E1A34480F00A8B2EF /* ANTableViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANTableViewFactory.h; sourceTree = "<group>"; };
+		07114F6F1A34480F00A8B2EF /* ANTableViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANTableViewFactory.m; sourceTree = "<group>"; };
+		07114F711A34480F00A8B2EF /* DTMemoryStorage+ANTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTMemoryStorage+ANTableViewController.h"; sourceTree = "<group>"; };
+		07114F721A34480F00A8B2EF /* DTMemoryStorage+ANTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DTMemoryStorage+ANTableViewController.m"; sourceTree = "<group>"; };
 		07FBC1111A31745900AC2743 /* ANTableControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ANTableControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07FBC1151A31745900AC2743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07FBC1161A31745900AC2743 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -71,57 +71,66 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07114F3C1A34418400A8B2EF /* TableController */ = {
+		07114F5E1A34480F00A8B2EF /* TableController */ = {
 			isa = PBXGroup;
 			children = (
-				07114F3D1A34418400A8B2EF /* ANTableController.h */,
-				07114F3E1A34418400A8B2EF /* ANTableController.m */,
-				07114F3F1A34418400A8B2EF /* ANTableControllerHeader.h */,
-				07114F401A34418400A8B2EF /* BaseUIClasses */,
-				07114F451A34418400A8B2EF /* Private */,
+				07114F5F1A34480F00A8B2EF /* ANTableController.h */,
+				07114F601A34480F00A8B2EF /* ANTableController.m */,
+				07114F611A34480F00A8B2EF /* ANTableControllerHeader.h */,
+				07114F621A34480F00A8B2EF /* BaseUIClasses */,
+				07114F671A34480F00A8B2EF /* Private */,
 			);
-			path = TableController;
+			name = TableController;
+			path = ../../TableController;
 			sourceTree = "<group>";
 		};
-		07114F401A34418400A8B2EF /* BaseUIClasses */ = {
+		07114F621A34480F00A8B2EF /* BaseUIClasses */ = {
 			isa = PBXGroup;
 			children = (
-				07114F411A34418400A8B2EF /* ANTableViewCell.h */,
-				07114F421A34418400A8B2EF /* ANTableViewCell.m */,
-				07114F431A34418400A8B2EF /* ANTableViewHeaderFooterView.h */,
-				07114F441A34418400A8B2EF /* ANTableViewHeaderFooterView.m */,
+				07114F631A34480F00A8B2EF /* ANTableViewCell.h */,
+				07114F641A34480F00A8B2EF /* ANTableViewCell.m */,
+				07114F651A34480F00A8B2EF /* ANTableViewHeaderFooterView.h */,
+				07114F661A34480F00A8B2EF /* ANTableViewHeaderFooterView.m */,
 			);
 			path = BaseUIClasses;
 			sourceTree = "<group>";
 		};
-		07114F451A34418400A8B2EF /* Private */ = {
+		07114F671A34480F00A8B2EF /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				07114F461A34418400A8B2EF /* ANTableController+Private.h */,
-				07114F471A34418400A8B2EF /* ANTableController+Private.m */,
-				07114F481A34418400A8B2EF /* ANTableController+UITableViewDelegatesPrivate.h */,
-				07114F491A34418400A8B2EF /* ANTableController+UITableViewDelegatesPrivate.m */,
-				07114F4A1A34418400A8B2EF /* ANTableControllerEvents.h */,
-				07114F4B1A34418400A8B2EF /* CellFactory */,
-				07114F4E1A34418400A8B2EF /* DTMemoryStorage+ANTableController.h */,
-				07114F4F1A34418400A8B2EF /* DTMemoryStorage+ANTableController.m */,
+				07114F681A34480F00A8B2EF /* ANTableController+Private.h */,
+				07114F691A34480F00A8B2EF /* ANTableController+Private.m */,
+				07114F6A1A34480F00A8B2EF /* ANTableController+UITableViewDelegatesPrivate.h */,
+				07114F6B1A34480F00A8B2EF /* ANTableController+UITableViewDelegatesPrivate.m */,
+				07114F6C1A34480F00A8B2EF /* ANTableControllerEvents.h */,
+				07114F6D1A34480F00A8B2EF /* CellFactory */,
+				07114F701A34480F00A8B2EF /* DTMemoryStorage */,
 			);
 			path = Private;
 			sourceTree = "<group>";
 		};
-		07114F4B1A34418400A8B2EF /* CellFactory */ = {
+		07114F6D1A34480F00A8B2EF /* CellFactory */ = {
 			isa = PBXGroup;
 			children = (
-				07114F4C1A34418400A8B2EF /* ANTableViewFactory.h */,
-				07114F4D1A34418400A8B2EF /* ANTableViewFactory.m */,
+				07114F6E1A34480F00A8B2EF /* ANTableViewFactory.h */,
+				07114F6F1A34480F00A8B2EF /* ANTableViewFactory.m */,
 			);
 			path = CellFactory;
+			sourceTree = "<group>";
+		};
+		07114F701A34480F00A8B2EF /* DTMemoryStorage */ = {
+			isa = PBXGroup;
+			children = (
+				07114F711A34480F00A8B2EF /* DTMemoryStorage+ANTableViewController.h */,
+				07114F721A34480F00A8B2EF /* DTMemoryStorage+ANTableViewController.m */,
+			);
+			path = DTMemoryStorage;
 			sourceTree = "<group>";
 		};
 		07FBC1081A31745900AC2743 = {
 			isa = PBXGroup;
 			children = (
-				07114F3C1A34418400A8B2EF /* TableController */,
+				07114F5E1A34480F00A8B2EF /* TableController */,
 				07FBC1131A31745900AC2743 /* ANTableControllerDemo */,
 				07FBC1121A31745900AC2743 /* Products */,
 				FFB535B96BD64B745A96EEC0 /* Pods */,
@@ -302,17 +311,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07114F561A34418400A8B2EF /* ANTableViewCell.m in Sources */,
+				07114F741A34480F00A8B2EF /* ANTableViewCell.m in Sources */,
 				07FBC11D1A31745A00AC2743 /* ViewController.m in Sources */,
 				07FBC11A1A31745A00AC2743 /* AppDelegate.m in Sources */,
-				07114F571A34418400A8B2EF /* ANTableViewHeaderFooterView.m in Sources */,
+				07114F791A34480F00A8B2EF /* DTMemoryStorage+ANTableViewController.m in Sources */,
+				07114F751A34480F00A8B2EF /* ANTableViewHeaderFooterView.m in Sources */,
 				07FBC15E1A31793000AC2743 /* TableController.m in Sources */,
-				07114F551A34418400A8B2EF /* ANTableController.m in Sources */,
+				07114F731A34480F00A8B2EF /* ANTableController.m in Sources */,
 				07FBC1171A31745900AC2743 /* main.m in Sources */,
-				07114F591A34418400A8B2EF /* ANTableController+UITableViewDelegatesPrivate.m in Sources */,
-				07114F581A34418400A8B2EF /* ANTableController+Private.m in Sources */,
-				07114F5A1A34418400A8B2EF /* ANTableViewFactory.m in Sources */,
-				07114F5B1A34418400A8B2EF /* DTMemoryStorage+ANTableController.m in Sources */,
+				07114F771A34480F00A8B2EF /* ANTableController+UITableViewDelegatesPrivate.m in Sources */,
+				07114F761A34480F00A8B2EF /* ANTableController+Private.m in Sources */,
+				07114F781A34480F00A8B2EF /* ANTableViewFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,7 +6,7 @@
 //
 
 #import "DTModelTransfer.h"
-#import "DTMemoryStorage+DTTableViewManagerAdditions.h"
+#import "DTMemoryStorage+ANTableViewController.h"
 #import "ANTableControllerEvents.h"
 #import "ANTableViewFactory.h"
 

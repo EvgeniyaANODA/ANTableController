@@ -1,9 +1,8 @@
 //
-//  DTCellFactory.m
-//  DTTableViewController
+//  ANTableViewFactory.m
 //
-//  Created by Denys Telezhkin on 6/19/12.
-//  Copyright (c) 2012 MLSDev. All rights reserved.
+//  Created by Oksana Kovalchuk on 17/11/14.
+//  Copyright (c) 2014 ANODA. All rights reserved.
 //
 
 #import "ANTableViewFactory.h"

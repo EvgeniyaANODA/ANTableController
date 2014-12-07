@@ -6,7 +6,6 @@
 //
 
 #import "ANTableController.h"
-#import "DTMemoryStorage+DTTableViewManagerAdditions.h"
 #import "ANStorageMovedIndexPath.h"
 #import "ANKeyboardHandler.h"
 #import "ANTableController+Private.h"
