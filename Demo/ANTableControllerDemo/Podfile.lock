@@ -1,0 +1,13 @@
+PODS:
+  - ANHelperFunctions (1.0)
+  - ANStorage (1.0):
+    - ANHelperFunctions (~> 1.0)
+
+DEPENDENCIES:
+  - ANStorage (~> 1.0)
+
+SPEC CHECKSUMS:
+  ANHelperFunctions: 0ed93dfd611da68c2fc44d19b0bc025e0436d658
+  ANStorage: 3a0e128323a8a393a7b8bd95f8a449e2054b2535
+
+COCOAPODS: 0.35.0
