@@ -29,7 +29,9 @@
 
 - (NSString *)_titleForSupplementaryIndex:(NSInteger)index type:(ANSupplementaryViewType)type
 {
-    if (self.sectionHeaderStyle == ANTableViewSectionStyleTitle)
+    BOOL isHeader = (type == ANSupplementaryViewTypeHeader);
+    ANTableViewSectionStyle style = isHeader ? self.sectionHeaderStyle : self.sectionFooterStyle;
+    if (style == ANTableViewSectionStyleTitle)
     {
         return [self _supplementaryModelForIndex:index type:type];
     }
