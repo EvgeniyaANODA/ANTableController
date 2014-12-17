@@ -18,10 +18,10 @@ typedef NS_ENUM(NSUInteger,ANTableViewSectionStyle)
 
 @interface ANTableController : NSObject
 <
-    UITableViewDataSource,
-    UITableViewDelegate,
-    UISearchBarDelegate,
-    ANTableViewControllerEvents
+UITableViewDataSource,
+UITableViewDelegate,
+UISearchBarDelegate,
+ANTableViewControllerEvents
 >
 
 - (instancetype)initWithTableView:(UITableView*)tableView;
@@ -54,6 +54,8 @@ typedef NS_ENUM(NSUInteger,ANTableViewSectionStyle)
 @property (nonatomic, assign) UITableViewRowAnimation insertRowAnimation;
 @property (nonatomic, assign) UITableViewRowAnimation deleteRowAnimation;
 @property (nonatomic, assign) UITableViewRowAnimation reloadRowAnimation;
+
+@property (nonatomic, assign) BOOL shouldAnimateTableViewUpdates; // default is YES
 
 #pragma mark - Mapping
 

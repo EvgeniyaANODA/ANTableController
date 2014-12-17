@@ -16,8 +16,8 @@ static const CGFloat kTableAnimationDuration = 0.25f;
 
 @interface ANTableController ()
 <
-    DTStorageUpdating,
-    ANTableViewFactoryDelegate
+DTStorageUpdating,
+ANTableViewFactoryDelegate
 >
 
 @property (nonatomic, assign) NSInteger currentSearchScope;
@@ -39,6 +39,7 @@ static const CGFloat kTableAnimationDuration = 0.25f;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         self.isHandlingKeyboard = YES;
+        self.shouldAnimateTableViewUpdates = YES;
         
         [self setupTableViewControllerDefaults];
     }
@@ -61,14 +62,14 @@ static const CGFloat kTableAnimationDuration = 0.25f;
 {
     _cellFactory = [ANTableViewFactory new];
     _cellFactory.delegate = self;
-
+    
     _currentSearchScope = -1;
     _sectionHeaderStyle = ANTableViewSectionStyleTitle;
     _sectionFooterStyle = ANTableViewSectionStyleTitle;
     _insertSectionAnimation = UITableViewRowAnimationNone;
     _deleteSectionAnimation = UITableViewRowAnimationAutomatic;
     _reloadSectionAnimation = UITableViewRowAnimationAutomatic;
-
+    
     _insertRowAnimation = UITableViewRowAnimationAutomatic;
     _deleteRowAnimation = UITableViewRowAnimationAutomatic;
     _reloadRowAnimation = UITableViewRowAnimationAutomatic;
@@ -83,7 +84,7 @@ static const CGFloat kTableAnimationDuration = 0.25f;
     if (self)
     {
         NSString * reason = [NSString stringWithFormat:@"You shouldn't init class %@ with method %@\n Please use initWithTableView method.",
-                           NSStringFromSelector(_cmd), NSStringFromClass([self class])];
+                             NSStringFromSelector(_cmd), NSStringFromClass([self class])];
         NSException * exc =
         [NSException exceptionWithName:[NSString stringWithFormat:@"%@ Exception", NSStringFromClass([self class])]
                                 reason:reason
@@ -158,7 +159,7 @@ static const CGFloat kTableAnimationDuration = 0.25f;
 {
     BOOL isSearchStringNonEmpty = (self.currentSearchString && self.currentSearchString.length);
     BOOL isSearching = (isSearchStringNonEmpty || self.currentSearchScope > -1);
-
+    
     return isSearching;
 }
 
@@ -169,12 +170,17 @@ static const CGFloat kTableAnimationDuration = 0.25f;
 
 - (void)filterTableItemsForSearchString:(NSString *)searchString inScope:(NSInteger)scopeNumber
 {
+    [self _filterTableItemsForSearchString:searchString inScope:scopeNumber reload:NO];
+}
+
+- (void)_filterTableItemsForSearchString:(NSString *)searchString inScope:(NSInteger)scopeNumber reload:(BOOL)shouldReload
+{
     BOOL isSearching = [self isSearching];
     
     BOOL isNothingChanged = ([searchString isEqualToString:self.currentSearchString]) &&
     (scopeNumber == self.currentSearchScope);
     
-    if (!isNothingChanged)
+    if (!isNothingChanged || shouldReload)
     {
         self.currentSearchScope = scopeNumber;
         self.currentSearchString = searchString;
@@ -196,6 +202,7 @@ static const CGFloat kTableAnimationDuration = 0.25f;
 }
 
 
+
 #pragma  mark - UISearchBarDelegate
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
@@ -208,24 +215,46 @@ static const CGFloat kTableAnimationDuration = 0.25f;
     [self filterTableItemsForSearchString:searchBar.text inScope:selectedScope];
 }
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self filterTableItemsForSearchString:nil inScope:-1];
+}
+
 #pragma mark - DTStorageUpdate delegate methods
 
 - (void)storageDidPerformUpdate:(DTStorageUpdate *)update
 {
-    if (!update)
+    if (update)
     {
-        return;
+        if (self.shouldAnimateTableViewUpdates)
+        {
+            [self _persormAnimatedUpdate:update];
+        }
+        else
+        {
+            ANDispatchBlockToMainQueue(^{
+                [self.tableView reloadData];
+            });
+        }
+        if ([self isSearching])
+        {
+            [self _filterTableItemsForSearchString:self.currentSearchString inScope:self.currentSearchScope reload:YES];
+        }
     }
+}
+
+- (void)_persormAnimatedUpdate:(DTStorageUpdate*)update
+{
     self.isAnimating = YES;
     
     ANDispatchBlockToMainQueue(^{
-       
-            [CATransaction begin];
-            [CATransaction setCompletionBlock:^{
         
-                self.isAnimating = NO;
-                [self tableControllerDidUpdateContent];
-            }];
+        [CATransaction begin];
+        [CATransaction setCompletionBlock:^{
+            
+            self.isAnimating = NO;
+            [self tableControllerDidUpdateContent];
+        }];
         
         [self tableControllerWillUpdateContent];
         
@@ -262,7 +291,7 @@ static const CGFloat kTableAnimationDuration = 0.25f;
 - (void)storageNeedsReload
 {
     ANDispatchBlockToMainQueue(^{
-    
+        
         [self tableControllerWillUpdateContent];
         [self.tableView reloadData];
         [self tableControllerDidUpdateContent];
