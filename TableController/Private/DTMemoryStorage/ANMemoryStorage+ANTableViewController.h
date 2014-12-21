@@ -1,7 +1,7 @@
 
-#import "DTMemoryStorage.h"
+#import "ANMemoryStorage.h"
 
-@interface DTMemoryStorage (ANTableViewManagerAdditions)
+@interface ANMemoryStorage (ANTableViewManagerAdditions)
 
 - (void)moveTableItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath;
 - (void)moveTableViewSection:(NSInteger)indexFrom toSection:(NSInteger)indexTo;

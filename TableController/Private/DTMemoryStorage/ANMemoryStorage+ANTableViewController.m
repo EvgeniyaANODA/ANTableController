@@ -1,34 +1,34 @@
 
 
-#import "DTMemoryStorage+ANTableViewController.h"
+#import "ANMemoryStorage+ANTableViewController.h"
 
 //TODO: don't like this shitty private protocol
-@protocol DTTableViewDataStorageUpdating <DTStorageUpdating>
+@protocol ANTableViewDataStorageUpdating <ANStorageUpdatingInterface>
 @optional
 
 - (void)performAnimatedUpdate:(void (^)(UITableView *))animationBlock;
 
 @end
 
-@interface DTMemoryStorage ()
+@interface ANMemoryStorage ()
 
-@property (nonatomic, retain) DTStorageUpdate * currentUpdate;
+@property (nonatomic, retain) ANStorageUpdate * currentUpdate;
 
-- (DTSectionModel *)createSectionIfNotExist:(NSUInteger)sectionNumber;
+- (ANSectionModel *)createSectionIfNotExist:(NSUInteger)sectionNumber;
 
 - (void)startUpdate;
 - (void)finishUpdate;
 
 @end
 
-@implementation DTMemoryStorage(DTTableViewManager_Additions)
+@implementation ANMemoryStorage (ANTableViewManagerAdditions)
 
 - (void)removeAllTableItems
 {
     NSArray* objects = [self.sections valueForKey:@"objects"];
     [objects makeObjectsPerformSelector:@selector(removeAllObjects)];
 
-    id<DTTableViewDataStorageUpdating> delegate = (id <DTTableViewDataStorageUpdating>)self.delegate;
+    id<ANTableViewDataStorageUpdating> delegate = (id <ANTableViewDataStorageUpdating>)self.delegate;
     
     [delegate performAnimatedUpdate:^(UITableView * tableView) {
         [tableView reloadData];
@@ -46,8 +46,8 @@
         NSLog(@"DTTableViewManager: source indexPath should not be nil when moving collection item");
         return;
     }
-    DTSectionModel * sourceSection = [self createSectionIfNotExist:sourceIndexPath.section];
-    DTSectionModel * destinationSection = [self createSectionIfNotExist:destinationIndexPath.section];
+    ANSectionModel * sourceSection = [self createSectionIfNotExist:sourceIndexPath.section];
+    ANSectionModel * destinationSection = [self createSectionIfNotExist:destinationIndexPath.section];
     
     if ([destinationSection.objects count] < destinationIndexPath.row)
     {
@@ -57,7 +57,7 @@
         return;
     }
     
-    [(id <DTTableViewDataStorageUpdating>)self.delegate performAnimatedUpdate:^(UITableView * tableView)
+    [(id <ANTableViewDataStorageUpdating>)self.delegate performAnimatedUpdate:^(UITableView * tableView)
      {
          [tableView insertSections:self.currentUpdate.insertedSectionIndexes
                   withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -74,13 +74,13 @@
 
 - (void)moveTableViewSection:(NSInteger)indexFrom toSection:(NSInteger)indexTo
 {
-    DTSectionModel * validSectionFrom = [self createSectionIfNotExist:indexFrom];
+    ANSectionModel * validSectionFrom = [self createSectionIfNotExist:indexFrom];
     [self createSectionIfNotExist:indexTo];
     
     [self.sections removeObject:validSectionFrom];
     [self.sections insertObject:validSectionFrom atIndex:indexTo];
     
-    id<DTTableViewDataStorageUpdating> delegate = (id <DTTableViewDataStorageUpdating>)self.delegate;
+    id<ANTableViewDataStorageUpdating> delegate = (id <ANTableViewDataStorageUpdating>)self.delegate;
     
     [delegate performAnimatedUpdate:^(UITableView * tableView) {
          [tableView moveSection:indexFrom toSection:indexTo];

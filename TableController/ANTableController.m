@@ -16,8 +16,8 @@ static const CGFloat kTableAnimationDuration = 0.25f;
 
 @interface ANTableController ()
 <
-DTStorageUpdating,
-ANTableViewFactoryDelegate
+    ANStorageUpdatingInterface,
+    ANTableViewFactoryDelegate
 >
 
 @property (nonatomic, assign) NSInteger currentSearchScope;
@@ -109,40 +109,40 @@ ANTableViewFactoryDelegate
     _isHandlingKeyboard = isHandlingKeyboard;
 }
 
-- (DTMemoryStorage *)memoryStorage
+- (ANMemoryStorage *)memoryStorage
 {
-    if ([self.storage isKindOfClass:[DTMemoryStorage class]])
+    if ([self.storage isKindOfClass:[ANMemoryStorage class]])
     {
-        return (DTMemoryStorage *)self.storage;
+        return (ANMemoryStorage *)self.storage;
     }
     return nil;
 }
 
--(id<DTStorageProtocol>)storage
+-(id<ANStorageInterface>)storage
 {
     if (!_storage)
     {
-        _storage = [DTMemoryStorage storage];
+        _storage = [ANMemoryStorage storage];
         [self _attachStorage:_storage];
         [self storageNeedsReload]; // handling one-section table setup
     }
     return _storage;
 }
 
-- (void)setStorage:(id <DTStorageProtocol>)storage
+- (void)setStorage:(id <ANStorageInterface>)storage
 {
     _storage = storage;
     [self _attachStorage:_storage];
     [self storageNeedsReload];
 }
 
-- (void)setSearchingStorage:(id <DTStorageProtocol>)searchingStorage
+- (void)setSearchingStorage:(id <ANStorageInterface>)searchingStorage
 {
     _searchingStorage = searchingStorage;
     [self _attachStorage:searchingStorage];
 }
 
-- (id<DTStorageProtocol>)currentStorage
+- (id<ANStorageInterface>)currentStorage
 {
     return [self isSearching] ? self.searchingStorage : self.storage;
 }
@@ -220,9 +220,9 @@ ANTableViewFactoryDelegate
     [self filterTableItemsForSearchString:nil inScope:-1];
 }
 
-#pragma mark - DTStorageUpdate delegate methods
+#pragma mark - ANStorageUpdate delegate methods
 
-- (void)storageDidPerformUpdate:(DTStorageUpdate *)update
+- (void)storageDidPerformUpdate:(ANStorageUpdate *)update
 {
     if (update)
     {
@@ -243,7 +243,7 @@ ANTableViewFactoryDelegate
     }
 }
 
-- (void)_persormAnimatedUpdate:(DTStorageUpdate*)update
+- (void)_persormAnimatedUpdate:(ANStorageUpdate*)update
 {
     self.isAnimating = YES;
     
@@ -382,7 +382,7 @@ moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
     NSArray* sections = [self.currentStorage sections];
     if (sections && sections.count > section)
     {
-        id <DTSection> sectionModel = sections[section];
+        id <ANSectionInterface> sectionModel = sections[section];
         return [sectionModel numberOfObjects];
     }
     return 0;

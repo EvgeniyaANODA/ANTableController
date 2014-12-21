@@ -11,11 +11,11 @@
 
 #pragma mark - Storage
 
-- (void)_attachStorage:(id<DTStorageProtocol>)storage
+- (void)_attachStorage:(id<ANStorageInterface>)storage
 {
-    storage.delegate = (id<DTStorageUpdating>)self;
-    [storage setSupplementaryHeaderKind:DTTableViewElementSectionHeader];
-    [storage setSupplementaryFooterKind:DTTableViewElementSectionFooter];
+    storage.delegate = (id<ANStorageUpdatingInterface>)self;
+    [storage setSupplementaryHeaderKind:ANTableViewElementSectionHeader];
+    [storage setSupplementaryFooterKind:ANTableViewElementSectionFooter];
 }
 
 #pragma mark - UITableView Delegate Helpers

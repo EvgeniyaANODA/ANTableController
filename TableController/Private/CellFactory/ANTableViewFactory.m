@@ -6,8 +6,8 @@
 //
 
 #import "ANTableViewFactory.h"
-#import "DTModelTransfer.h"
-#import "DTRuntimeHelper.h"
+#import "ANModelTransfer.h"
+#import "ANRuntimeHelper.h"
 
 @interface ANTableViewFactory ()
 
@@ -51,15 +51,15 @@
 - (void)registerCellClass:(Class)cellClass forModelClass:(Class)modelClass
 {
     NSParameterAssert([cellClass isSubclassOfClass:[UITableViewCell class]]);
-    NSParameterAssert([cellClass conformsToProtocol:@protocol(DTModelTransfer)]);
+    NSParameterAssert([cellClass conformsToProtocol:@protocol(ANModelTransfer)]);
     NSParameterAssert(modelClass);
     
-    NSString * reuseIdentifier = [DTRuntimeHelper classStringForClass:cellClass];
+    NSString * reuseIdentifier = [ANRuntimeHelper classStringForClass:cellClass];
     [[self.delegate tableView] registerClass:cellClass
                       forCellReuseIdentifier:reuseIdentifier];
     
-    [self.cellMappingsDictionary setObject:[DTRuntimeHelper classStringForClass:cellClass]
-                                    forKey:[DTRuntimeHelper modelStringForClass:modelClass]];
+    [self.cellMappingsDictionary setObject:[ANRuntimeHelper classStringForClass:cellClass]
+                                    forKey:[ANRuntimeHelper modelStringForClass:modelClass]];
 }
 
 - (void)registerSupplementayClass:(Class)supplementaryClass forModelClass:(Class)modelClass type:(ANSupplementaryViewType)type
@@ -72,7 +72,7 @@
     NSMutableDictionary* mappings = isHeader ? self.headerMappingsDictionary : self.footerMappingsDictionary;
     
     [mappings setObject:NSStringFromClass(supplementaryClass)
-                                      forKey:[DTRuntimeHelper modelStringForClass:modelClass]];
+                                      forKey:[ANRuntimeHelper modelStringForClass:modelClass]];
 }
 
 #pragma mark - View creation
@@ -80,7 +80,7 @@
 - (UITableViewCell *)cellForModel:(id)model atIndexPath:(NSIndexPath *)indexPath
 {
     NSString * reuseIdentifier = [self _cellReuseIdentifierForModel:model];
-    UITableViewCell <DTModelTransfer> * cell;
+    UITableViewCell <ANModelTransfer> * cell;
     cell = [[self.delegate tableView] dequeueReusableCellWithIdentifier:reuseIdentifier
                                                            forIndexPath:indexPath];
     [cell updateWithModel:model];
@@ -91,7 +91,7 @@
 - (UIView *)supplementaryViewForModel:(id)model type:(ANSupplementaryViewType)type
 {
     Class supplementaryClass = [self _supplementaryClassForModel:model type:type];
-    UIView <DTModelTransfer> * view = (id)[self _headerFooterViewForViewClass:supplementaryClass];
+    UIView <ANModelTransfer> * view = (id)[self _headerFooterViewForViewClass:supplementaryClass];
     [view updateWithModel:model];
     
     return view;
@@ -101,7 +101,7 @@
 
 - (NSString *)_cellReuseIdentifierForModel:(id)model
 {
-    NSString* modelClassName = [DTRuntimeHelper modelStringForClass:[model class]];
+    NSString* modelClassName = [ANRuntimeHelper modelStringForClass:[model class]];
     NSString* cellClassString = [self.cellMappingsDictionary objectForKey:modelClassName];
     NSAssert(cellClassString, @"%@ does not have cell mapping for model class: %@",[self class], [model class]);
     
@@ -110,7 +110,7 @@
 
 - (UIView *)_headerFooterViewForViewClass:(Class)viewClass
 {
-    NSString * reuseIdentifier = [DTRuntimeHelper classStringForClass:viewClass];
+    NSString * reuseIdentifier = [ANRuntimeHelper classStringForClass:viewClass];
     UIView * view = [[self.delegate tableView] dequeueReusableHeaderFooterViewWithIdentifier:reuseIdentifier];
     
     return view;
@@ -128,7 +128,7 @@
 
 - (Class)_supplementaryClassForModel:(id)model type:(ANSupplementaryViewType)type
 {
-    NSString* modelClassName = [DTRuntimeHelper modelStringForClass:[model class]];
+    NSString* modelClassName = [ANRuntimeHelper modelStringForClass:[model class]];
     NSString* supplClassString = [[self _supplementaryMappingsForType:type] objectForKey:modelClassName];
     NSAssert(supplClassString, @"DTCellFactory does not have supplementary mapping for model class: %@",[model class]);
     

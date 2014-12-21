@@ -5,8 +5,8 @@
 //  Copyright (c) 2014 ANODA. All rights reserved.
 //
 
-#import "DTModelTransfer.h"
-#import "DTMemoryStorage+ANTableViewController.h"
+#import "ANModelTransfer.h"
+#import "ANMemoryStorage+ANTableViewController.h"
 #import "ANTableControllerEvents.h"
 #import "ANTableViewFactory.h"
 
@@ -29,17 +29,17 @@ ANTableViewControllerEvents
 @property (nonatomic, assign) BOOL isAnimating;
 @property (nonatomic, assign) BOOL isHandlingKeyboard; // default yes;
 @property (nonatomic, retain) ANTableViewFactory * cellFactory;
-@property (nonatomic, strong, readonly) id <DTStorageProtocol> currentStorage;
+@property (nonatomic, strong, readonly) id <ANStorageInterface> currentStorage;
 
 @property (nonatomic, weak) UITableView * tableView;
 @property (nonatomic, strong) UISearchBar* searchBar;
 
 #pragma mark - Storages
 
-@property (nonatomic, strong) id <DTStorageProtocol> storage;
-@property (nonatomic, strong) id <DTStorageProtocol> searchingStorage;
+@property (nonatomic, strong) id <ANStorageInterface> storage;
+@property (nonatomic, strong) id <ANStorageInterface> searchingStorage;
 
-- (DTMemoryStorage *)memoryStorage;
+- (ANMemoryStorage *)memoryStorage;
 
 #pragma mark - View's related
 

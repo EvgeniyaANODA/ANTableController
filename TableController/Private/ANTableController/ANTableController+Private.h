@@ -20,6 +20,6 @@
 
 //storage
 
-- (void)_attachStorage:(id<DTStorageProtocol>)storage;
+- (void)_attachStorage:(id<ANStorageInterface>)storage;
 
 @end
