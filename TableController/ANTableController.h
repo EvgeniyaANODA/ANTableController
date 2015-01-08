@@ -64,7 +64,7 @@ ANTableViewControllerEvents
 - (void)registerFooterClass:(Class)footerClass forModelClass:(Class)modelClass;
 
 /**
- Perform animations you need for changes in UITableView. Method can be used for complex animations, that should be run simultaneously. For example, `DTTableViewManagerAdditions` category on `DTMemoryStorage` uses it to implement moving items between indexPaths.
+ Perform animations you need for changes in UITableView. Method can be used for complex animations, that should be run simultaneously. For example, `DTTableViewManagerAdditions` category on `ANMemoryStorage` uses it to implement moving items between indexPaths.
  
  @param animationBlock AnimationBlock to be executed with UITableView.
  
