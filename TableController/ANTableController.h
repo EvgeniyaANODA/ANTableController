@@ -10,6 +10,8 @@
 #import "ANTableControllerEvents.h"
 #import "ANTableViewFactory.h"
 
+@class ANKeyboardHandler;
+
 typedef NS_ENUM(NSUInteger,ANTableViewSectionStyle)
 {
     ANTableViewSectionStyleTitle = 1,
@@ -31,8 +33,10 @@ ANTableViewControllerEvents
 @property (nonatomic, retain) ANTableViewFactory * cellFactory;
 @property (nonatomic, strong, readonly) id <ANStorageInterface> currentStorage;
 
-@property (nonatomic, weak) UITableView * tableView;
+@property (nonatomic, weak) UITableView* tableView;
 @property (nonatomic, strong) UISearchBar* searchBar;
+
+@property (nonatomic, strong) ANKeyboardHandler* keyboardHandler;
 
 #pragma mark - Storages
 

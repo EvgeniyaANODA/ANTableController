@@ -22,7 +22,6 @@ static const CGFloat kTableAnimationDuration = 0.25f;
 
 @property (nonatomic, assign) NSInteger currentSearchScope;
 @property (nonatomic, copy) NSString * currentSearchString;
-@property (nonatomic, strong) ANKeyboardHandler* keyboardHandler;
 
 @end
 
