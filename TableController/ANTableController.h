@@ -26,8 +26,6 @@ UISearchBarDelegate,
 ANTableViewControllerEvents
 >
 
-- (instancetype)initWithTableView:(UITableView*)tableView;
-
 @property (nonatomic, assign) BOOL isAnimating;
 @property (nonatomic, assign) BOOL isHandlingKeyboard; // default yes;
 @property (nonatomic, retain) ANTableViewFactory * cellFactory;
@@ -60,6 +58,9 @@ ANTableViewControllerEvents
 @property (nonatomic, assign) UITableViewRowAnimation reloadRowAnimation;
 
 @property (nonatomic, assign) BOOL shouldAnimateTableViewUpdates; // default is YES
+
+
+- (instancetype)initWithTableView:(UITableView*)tableView;
 
 #pragma mark - Mapping
 

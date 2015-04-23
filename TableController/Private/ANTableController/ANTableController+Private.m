@@ -65,9 +65,14 @@
 
 - (id)_supplementaryModelForIndex:(NSInteger)index type:(ANSupplementaryViewType)type
 {
-    if ([self.currentStorage.sections[index] numberOfObjects] || self.displayHeaderOnEmptySection)
+    BOOL isHeader = (type == ANSupplementaryViewTypeHeader);
+    BOOL value = isHeader ? self.displayHeaderOnEmptySection : self.displayFooterOnEmptySection;
+    
+    if ((self.currentStorage.sections.count && [self.currentStorage.sections[index] numberOfObjects]) || value)
     {
-        if ([self.currentStorage respondsToSelector:@selector(headerModelForSectionIndex:)])
+        SEL selector = isHeader ? @selector(headerModelForSectionIndex:) : @selector(footerModelForSectionIndex:);
+        
+        if ([self.currentStorage respondsToSelector:selector])
         {
             if (type == ANSupplementaryViewTypeHeader)
             {

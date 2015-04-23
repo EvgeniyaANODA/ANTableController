@@ -81,9 +81,16 @@
 {
     NSString * reuseIdentifier = [self _cellReuseIdentifierForModel:model];
     UITableViewCell <ANModelTransfer> * cell;
-    cell = [[self.delegate tableView] dequeueReusableCellWithIdentifier:reuseIdentifier
-                                                           forIndexPath:indexPath];
-    [cell updateWithModel:model];
+    if (reuseIdentifier)
+    {
+        cell = [[self.delegate tableView] dequeueReusableCellWithIdentifier:reuseIdentifier
+                                                               forIndexPath:indexPath];
+        [cell updateWithModel:model];
+    }
+    else
+    {
+        cell = [UITableViewCell new];
+    }
     return cell;
 }
 
