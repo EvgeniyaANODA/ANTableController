@@ -223,16 +223,17 @@ static const CGFloat kTableAnimationDuration = 0.25f;
 
 - (void)storageDidPerformUpdate:(ANStorageUpdate *)update
 {
-    if (update)
+    BOOL isUpdateEmpty = [update isEmpty];
+    if (update && ![update isEmpty])
     {
         if (self.shouldAnimateTableViewUpdates)
         {
-            [self _persormAnimatedUpdate:update];
+            [self _performAnimatedUpdate:update];
         }
         else
         {
             ANDispatchBlockToMainQueue(^{
-                [self.tableView reloadData];
+                [self storageNeedsReload];
             });
         }
         if ([self isSearching])
@@ -242,55 +243,63 @@ static const CGFloat kTableAnimationDuration = 0.25f;
     }
 }
 
-- (void)_persormAnimatedUpdate:(ANStorageUpdate*)update
+- (void)_performAnimatedUpdate:(ANStorageUpdate*)update
 {
-    self.isAnimating = YES;
-    
-    ANDispatchBlockToMainQueue(^{
-        
-        [CATransaction begin];
-        [CATransaction setCompletionBlock:^{
+    if (!update.isProcessing)
+    {
+        NSLog(@"TABLE VIEW UPDATE");
+        update.isProcessing = YES;
+        self.isAnimating = YES;
+        ANDispatchBlockToMainQueue(^{
             
-            self.isAnimating = NO;
-            [self tableControllerDidUpdateContent];
-        }];
-        
-        [self tableControllerWillUpdateContent];
-        
-        [self.tableView beginUpdates];
-        
-        [self.tableView deleteSections:update.deletedSectionIndexes
-                      withRowAnimation:self.deleteSectionAnimation];
-        [self.tableView insertSections:update.insertedSectionIndexes
-                      withRowAnimation:self.insertSectionAnimation];
-        [self.tableView reloadSections:update.updatedSectionIndexes
-                      withRowAnimation:self.reloadSectionAnimation];
-        
-        [update.movedRowsIndexPaths enumerateObjectsUsingBlock:^(ANStorageMovedIndexPath* obj, NSUInteger idx, BOOL *stop) {
+            [CATransaction begin];
+            [CATransaction setCompletionBlock:^{
+                self.isAnimating = NO;
+                [self tableControllerDidUpdateContent];
+                update.isProcessing = NO;
+            }];
             
-            if (![update.deletedSectionIndexes containsIndex:obj.fromIndexPath.section])
-            {
-                [self.tableView moveRowAtIndexPath:obj.fromIndexPath toIndexPath:obj.toIndexPath];
-            }
-        }];
-        
-        [self.tableView deleteRowsAtIndexPaths:update.deletedRowIndexPaths
-                              withRowAnimation:self.deleteRowAnimation];
-        [self.tableView insertRowsAtIndexPaths:update.insertedRowIndexPaths
-                              withRowAnimation:self.insertRowAnimation];
-        [self.tableView reloadRowsAtIndexPaths:update.updatedRowIndexPaths
-                              withRowAnimation:self.reloadRowAnimation];
-        
-        [self.tableView endUpdates];
-        
-        [CATransaction commit];
-    });
+            [self tableControllerWillUpdateContent];
+            
+            [self.tableView beginUpdates];
+
+            [self.tableView insertSections:update.insertedSectionIndexes
+                          withRowAnimation:self.insertSectionAnimation];
+            
+            [self.tableView deleteSections:update.deletedSectionIndexes
+                          withRowAnimation:self.deleteSectionAnimation];
+            
+            [self.tableView reloadSections:update.updatedSectionIndexes
+                          withRowAnimation:self.reloadSectionAnimation];
+            
+            [update.movedRowsIndexPaths enumerateObjectsUsingBlock:^(ANStorageMovedIndexPath* obj, NSUInteger idx, BOOL *stop) {
+                
+                if (![update.deletedSectionIndexes containsIndex:obj.fromIndexPath.section])
+                {
+                    [self.tableView moveRowAtIndexPath:obj.fromIndexPath toIndexPath:obj.toIndexPath];
+                }
+            }];
+            
+            [self.tableView insertRowsAtIndexPaths:update.insertedRowIndexPaths
+                                  withRowAnimation:self.insertRowAnimation];
+            
+            [self.tableView deleteRowsAtIndexPaths:update.deletedRowIndexPaths
+                                  withRowAnimation:self.deleteRowAnimation];
+            
+            [self.tableView reloadRowsAtIndexPaths:update.updatedRowIndexPaths
+                                  withRowAnimation:self.reloadRowAnimation];
+            
+            [self.tableView endUpdates];
+            [CATransaction commit];
+        });
+    }
+
 }
 
 - (void)storageNeedsReload
 {
     ANDispatchBlockToMainQueue(^{
-        
+        [self.memoryStorage clearStorageUpdate];
         [self tableControllerWillUpdateContent];
         [self.tableView reloadData];
         [self tableControllerDidUpdateContent];
