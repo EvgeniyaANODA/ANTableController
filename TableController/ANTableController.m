@@ -247,7 +247,6 @@ static const CGFloat kTableAnimationDuration = 0.25f;
 {
     if (!update.isProcessing)
     {
-        NSLog(@"TABLE VIEW UPDATE");
         update.isProcessing = YES;
         self.isAnimating = YES;
         ANDispatchBlockToMainQueue(^{
