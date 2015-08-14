@@ -55,6 +55,10 @@
     NSParameterAssert(modelClass);
     
     NSString * reuseIdentifier = [ANRuntimeHelper classStringForClass:cellClass];
+    
+    NSParameterAssert(reuseIdentifier);
+    reuseIdentifier = reuseIdentifier ? : @"";
+    
     [[self.delegate tableView] registerClass:cellClass
                       forCellReuseIdentifier:reuseIdentifier];
     
@@ -80,6 +84,9 @@
 - (UITableViewCell *)cellForModel:(id)model atIndexPath:(NSIndexPath *)indexPath
 {
     NSString * reuseIdentifier = [self _cellReuseIdentifierForModel:model];
+    NSParameterAssert(reuseIdentifier);
+    reuseIdentifier = reuseIdentifier ? : @"";
+    
     UITableViewCell <ANModelTransfer> * cell;
     if (reuseIdentifier)
     {
@@ -118,6 +125,9 @@
 - (UIView *)_headerFooterViewForViewClass:(Class)viewClass
 {
     NSString * reuseIdentifier = [ANRuntimeHelper classStringForClass:viewClass];
+    NSParameterAssert(reuseIdentifier);
+    reuseIdentifier = reuseIdentifier ? : @"";
+    
     UIView * view = [[self.delegate tableView] dequeueReusableHeaderFooterViewWithIdentifier:reuseIdentifier];
     
     return view;
