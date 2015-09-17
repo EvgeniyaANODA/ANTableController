@@ -65,6 +65,7 @@ ANTableViewControllerEvents
 #pragma mark - Mapping
 
 - (void)registerCellClass:(Class)cellClass forModelClass:(Class)modelClass;
+- (void)registerCellNib:(NSString *)nib forModelClass:(Class)modelClass;
 - (void)registerHeaderClass:(Class)headerClass forModelClass:(Class)modelClass;
 - (void)registerFooterClass:(Class)footerClass forModelClass:(Class)modelClass;
 

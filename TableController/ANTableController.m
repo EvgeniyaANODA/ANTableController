@@ -349,6 +349,10 @@ static const CGFloat kTableAnimationDuration = 0.25f;
     [self.cellFactory registerCellClass:cellClass forModelClass:modelClass];
 }
 
+- (void)registerCellNib:(NSString *)nib forModelClass:(Class)modelClass {
+    [self.cellFactory registerCellNib:nib forModelClass:modelClass];
+}
+
 - (void)registerHeaderClass:(Class)viewClass forModelClass:(Class)modelClass
 {
     [self _registerSupplementaryClass:viewClass forModelClass:modelClass type:ANSupplementaryViewTypeHeader];

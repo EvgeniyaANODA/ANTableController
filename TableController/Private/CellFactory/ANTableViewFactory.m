@@ -66,6 +66,26 @@
                                     forKey:[ANRuntimeHelper modelStringForClass:modelClass]];
 }
 
+- (void)registerCellNib:(NSString *)nibName forModelClass:(Class)modelClass {
+    UINib *nib = [UINib nibWithNibName:nibName bundle:nil];
+    UITableViewCell *templateCell = [[nib instantiateWithOwner:nil options:nil] firstObject];
+    Class cellClass = [templateCell class];
+    
+    NSParameterAssert([cellClass isSubclassOfClass:[UITableViewCell class]]);
+    NSParameterAssert([templateCell conformsToProtocol:@protocol(ANModelTransfer)]);
+    NSParameterAssert(modelClass);
+    
+    NSString * reuseIdentifier = [ANRuntimeHelper classStringForClass:cellClass];
+    
+    NSParameterAssert(reuseIdentifier);
+    reuseIdentifier = reuseIdentifier ? : @"";
+    
+    [[self.delegate tableView] registerNib:nib forCellReuseIdentifier:reuseIdentifier];
+    
+    [self.cellMappingsDictionary setObject:[ANRuntimeHelper classStringForClass:cellClass]
+                                    forKey:[ANRuntimeHelper modelStringForClass:modelClass]];
+}
+
 - (void)registerSupplementayClass:(Class)supplementaryClass forModelClass:(Class)modelClass type:(ANSupplementaryViewType)type
 {
     NSAssert(([supplementaryClass isSubclassOfClass:[UITableViewHeaderFooterView class]]), @"Class must be UITableViewHeaderFooterView object");
