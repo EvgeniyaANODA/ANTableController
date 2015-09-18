@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
 
   spec.dependency 'ANHelperFunctions', '~> 1.0.3'
   spec.dependency 'ANKeyboardHandler', '~> 1.0.2'
-  spec.dependency 'ANStorage', '~> 1.1.3'
+  spec.dependency 'ANStorage', '~> 1.1'
 
   spec.ios.deployment_target = '6.0'
 end
