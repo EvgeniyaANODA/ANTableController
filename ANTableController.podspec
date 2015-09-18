@@ -14,9 +14,9 @@ Pod::Spec.new do |spec|
   spec.framework = "Foundation", "UIKit"
   spec.requires_arc = true
 
-  spec.dependency 'ANHelperFunctions', '~> 1.0'
-  spec.dependency 'ANKeyboardHandler', '~> 1.0'
-  spec.dependency 'ANStorage', '~> 1.0'
+  spec.dependency 'ANHelperFunctions', '~> 1'
+  spec.dependency 'ANKeyboardHandler', '~> 1'
+  spec.dependency 'ANStorage', '~> 1'
 
   spec.ios.deployment_target = '6.0'
 end
