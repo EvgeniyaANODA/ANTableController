@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name     = 'ANTableController'
-  spec.version  = '1.1.2'
+  spec.version  = '1.1.3'
   spec.license  = { :type => 'MIT' }
   spec.homepage = 'https://github.com/anodamobi/ANTableController'
   spec.authors  = { 'Oksana Kovalchuk' => 'oksana@anoda.mobi' }
@@ -14,9 +14,9 @@ Pod::Spec.new do |spec|
   spec.framework = "Foundation", "UIKit"
   spec.requires_arc = true
 
-  spec.dependency 'ANHelperFunctions', '~> 1'
-  spec.dependency 'ANKeyboardHandler', '~> 1'
-  spec.dependency 'ANStorage', '~> 1'
+  spec.dependency 'ANHelperFunctions', '~> 1.0.3'
+  spec.dependency 'ANKeyboardHandler', '~> 1.0.2'
+  spec.dependency 'ANStorage', '~> 1.1.3'
 
   spec.ios.deployment_target = '6.0'
 end
