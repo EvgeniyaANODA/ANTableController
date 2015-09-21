@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, ANSupplementaryViewType)
 @interface ANTableViewFactory : NSObject
 
 - (void)registerCellClass:(Class)cellClass forModelClass:(Class)modelClass;
-- (void)registerCellNib:(NSString *)nib forModelClass:(Class)modelClass;
+- (void)registerCellNib:(NSString *)nibName forModelClass:(Class)modelClass;
 
 - (void)registerSupplementayClass:(Class)supplementaryClass
                     forModelClass:(Class)modelClass
