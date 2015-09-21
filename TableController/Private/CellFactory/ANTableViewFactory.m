@@ -82,8 +82,10 @@
     
     [[self.delegate tableView] registerNib:nib forCellReuseIdentifier:reuseIdentifier];
     
-    [self.cellMappingsDictionary setObject:[ANRuntimeHelper classStringForClass:cellClass]
-                                    forKey:[ANRuntimeHelper modelStringForClass:modelClass]];
+    if (cellClass && modelClass) {
+        [self.cellMappingsDictionary setObject:[ANRuntimeHelper classStringForClass:cellClass]
+                                        forKey:[ANRuntimeHelper modelStringForClass:modelClass]];
+    }
 }
 
 - (void)registerSupplementayClass:(Class)supplementaryClass forModelClass:(Class)modelClass type:(ANSupplementaryViewType)type
