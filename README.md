@@ -1,3 +1,5 @@
+#THIS REPO IS UNSUPPORTED AND WILL BE REMOVED!
+
 # ANTableController
 
 Adoption of `DTTableViewController` for using without `UIViewController` sublassing
